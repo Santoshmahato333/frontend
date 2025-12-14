@@ -1,9 +1,9 @@
 'use client'
-import React from 'react'
+import React, { Suspense } from 'react'
 import Header from '@/components/Header'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-const Page = () => {
+function TransactionDetailsContent() {
     const router = useRouter()
     const searchParams = useSearchParams()
     
@@ -144,4 +144,10 @@ const Page = () => {
     )
 }
 
-            export default Page;
+export default function Page() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center">Loading...</div>}>
+            <TransactionDetailsContent />
+        </Suspense>
+    )
+}
